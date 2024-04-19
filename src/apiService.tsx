@@ -54,13 +54,13 @@ const apiService = {
     return axios.get(`${API_BASE_URL}/States/get-states-by-country/${countryId}`);
   },
 
-//   addEmployee: (employeeData: EmployeeData): Promise<AxiosResponse<any>> => {
-//     return axios.post(`${API_BASE_URL}/Employees/add-employee/`, employeeData);
-//   },
+  addEmployee: (employeeData: any): Promise<AxiosResponse<any>> => {
+    return axios.post(`${API_BASE_URL}/Employees/add-employee/`, employeeData);
+  },
 
-//   updateEmployee: (employeeId: string, employeeData: EmployeeData): Promise<AxiosResponse<any>> => {
-//     return axios.put(`${API_BASE_URL}/Employees/update-employee/${employeeId}`, employeeData);
-//   },
+  updateEmployee: (employeeId: string, employeeData: any): Promise<AxiosResponse<any>> => {
+    return axios.put(`${API_BASE_URL}/Employees/update-employee/${employeeId}`, employeeData);
+  },
 
   deleteEmployee: (employeeId: string): Promise<AxiosResponse<any>> => {
     return axios.delete(`${API_BASE_URL}/Employees/delete-employee/${employeeId}`);

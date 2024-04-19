@@ -125,34 +125,34 @@ function App() {
   };
 
   const onSubmit = async (formData: EmployeeData) => { // Replace 'any' with correct type if available
-    // const payload = new FormData();
-    // payload.append('photo', file as Blob);
-    // payload.append('firstName', formData.firstName);
-    // payload.append('lastName', formData.lastName);
-    // payload.append('email', formData.email);
-    // payload.append('gender', formData.gender);
-    // payload.append('maritalStatus', formData.maritalStatus);
-    // payload.append('hobbies', formData.hobbies);
-    // payload.append('salary', formData.salary);
-    // payload.append('address', formData.address);
-    // payload.append('country', formData.country);
-    // payload.append('state', formData.state);
-    // payload.append('city', formData.city);
-    // payload.append('zipCode', formData.zipCode);
-    // payload.append('password', formData.password);
+    const payload = new FormData();
+    payload.append('photo', file as Blob);
+    payload.append('firstName', formData.firstName);
+    payload.append('lastName', formData.lastName);
+    payload.append('email', formData.email);
+    payload.append('gender', formData.gender);
+    payload.append('maritalStatus', formData.maritalStatus.toString());
+    payload.append('hobbies', formData.hobbies);
+    payload.append('salary', formData.salary.toString());
+    payload.append('address', formData.address);
+    payload.append('country', formData.country || '');
+    payload.append('state', formData.state || '');
+    payload.append('city', formData.city || '');
+    payload.append('zipCode', formData.zipCode);
+    payload.append('password', formData.password);
 
-    // if (selectedEmployee) {
-    //   await apiService.updateEmployee(selectedEmployee.id, payload)
-    //     .then((response:any) => {
-    //       apiService.getAllEmployees().then((res:any) => setData(res.data));
-    //     });
-    // } else {
-    //   apiService.addEmployee(payload).then((response:any) => {
-    //     apiService.getAllEmployees().then((res:any) => setData(res.data));
-    //   });
-    // }
+    if (selectedEmployee) {
+      await apiService.updateEmployee(selectedEmployee.id, payload)
+        .then((response:any) => {
+          apiService.getAllEmployees().then((res:any) => setData(res.data));
+        });
+    } else {
+      apiService.addEmployee(payload).then((response:any) => {
+        apiService.getAllEmployees().then((res:any) => setData(res.data));
+      });
+    }
 
-    // handleCancel();
+    handleCancel();
   };
 
   const handleDelete = (record: Employee) => {
